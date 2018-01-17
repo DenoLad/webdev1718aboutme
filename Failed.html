@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <title>Resaurant</title>
+        
+        <style>
+            p, h1 {font-family: Comic Sans MS;}
+            p {font-size:1.5em;line-height:1.5em; margin-left: 24px;}
+            pre {font-size: 2em;}
+            h1 { border: 10px solid Black; margin: 4px; border-radius: 5px; background-color: #F5F}
+        p { border: 10px solid Black; margin: 4px; border-radius: 5px; background-color: #F5F}
+           #map {
+            height: 400px;
+            width: 100%;
+           }
+        </style>
+    </head>
+    <body>
+    <div id="map"></div>
+    <script>
+      function initMap() {
+        var uluru = {lat: 41.8781, lng: -87.6298};
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 4,
+          center: uluru
+        });
+        var marker = new google.maps.Marker({
+          position: uluru,
+          map: map
+        });
+      }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=&callback=initMap">
+    </script>
+    <h1>Food Inspections Results</h1>
+    
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    
+    <script>
+        /*
+            This script retrieves 311 pot hole service request data for 
+            from the 
+            City of Chicago Data Portal
+            
+            This script doesn't update the DOM.
+
+        */
+
+        // base URL to the food inspections data
+        var baseURL = 'https://data.cityofchicago.org/resource/cwig-ma7x.json';
+        
+        // optional filters we're appending - status
+
+        
+        // full URL
+        
+        var url = baseURL;
+        
+        console.log (url);
+        
+        $(
+            // jQuery command to retrieve json data
+            
+            $.getJSON(url)
+                .done (function (data) {
+                    // TODO:  add script to add data to the DOM
+                    console.log(data);
+
+                    // loop through the records
+                    
+                    $.each(data, function(index, value){
+                       var html =  "<div><h1>" + "Name: " + value.dba_name  + "</h1>" +
+                                    "<p>Results: " + value.results + "<br>" +
+                                    "Address: " + value.address + "<br>" + 
+                                    
+                                    "</p>" +
+                                    "</div>";
+                                    
+                                    
+                        $("body").append(html);
+                    });
+                })
+            
+            
+        )
+        
+        
+
+    </script>
+    </body>
+    
+</html>
