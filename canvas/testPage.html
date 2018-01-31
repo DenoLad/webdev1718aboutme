@@ -7,22 +7,20 @@
 </canvas>
 
 <script>
-     var canvas = document.getElementById("myCanvas");
+    var canvas = document.getElementById("myCanvas");
     var context = canvas.getContext("2d");
     
-    context.beginPath();
-    context.rect(0, 400, 400, 400);
+    var canvas = document.querySelector("#myCanvas");
+    var context = canvas.getContext("2d");
      
-    // our radial gradient!
-    var gradient = context.createRadialGradient(200, 200, 200, 0, 400, 200);
+    context.moveTo(50, 130);
+    context.quadraticCurveTo(200, 400, 200, 100);
+    context.closePath();
      
-    // our two color stops
-    gradient.addColorStop(0, "#FFCC00");
-    gradient.addColorStop(1, "#B4CB02");
+    context.lineWidth = 15;
+    context.strokeStyle = "#FFCC00";
      
-    // assigning the gradient
-    context.fillStyle = gradient;
-    context.fill();
+    context.stroke();
         
 </script>
     

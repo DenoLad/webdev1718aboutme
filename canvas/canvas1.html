@@ -9,6 +9,7 @@
 <script>
     var canvas = document.getElementById("myCanvas");
     var context = canvas.getContext("2d");
+    var tongue = canvas.getContext("2d");
     
     context.beginPath();
     context.rect(0, 0, 400, 400);
@@ -41,6 +42,40 @@
     context.strokeStyle = "#FFA500";
      
     context.stroke();
+    
+    //context.beginPath();
+    context.moveTo(50, 275);
+    context.quadraticCurveTo(200, 400, 300, 275);
+    context.closePath();
+     
+    context.lineWidth = 15;
+    context.strokeStyle = "#FFCC00";
+     
+    context.stroke();
+    
+    tongue.beginPath();
+    tongue.lineWidth = 5;
+    
+    tongue.moveTo(150, 325);
+    tongue.quadraticCurveTo(200, 450, 222, 325);
+    tongue.closePath();
+    tongue.strokeStyle = "#f4428f";
+    tongue.fillStyle = "#f4428f";
+ 
+    tongue.stroke();
+    tongue.fill();
+    
+    context.beginPath();
+    
+    context.moveTo(190, 325);
+    context.lineTo(195,385);
+    
+    context.lineWidth = 1;
+    context.strokeStyle = "black";
+    
+    context.stroke();
+    
+    
         
 </script>
     
