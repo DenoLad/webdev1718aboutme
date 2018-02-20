@@ -24,8 +24,36 @@
         var xPos = -500;
         var speed = 5;
          
+        var trailLength = 8; 
+        var positions = [];
+        
+        function storeLastPosition(xPos) {
+          // push an item
+          positions.push({
+            x: xPos,
+           
+          });
+         
+          //get rid of first item
+          if (positions.length > trailLength) {
+            positions.shift();
+          }
+        }
+        
+         
         function drawCircle() {
                 mainContext.clearRect(0, 0, canvasWidth, canvasHeight);
+                
+                for (var i = 0; i < positions.length; i++) {
+                      var ratio = (i + 1) / positions.length;
+                      
+                      mainContext.beginPath();
+                      mainContext.arc(positions[i].x, positions[i].y, 50, 0, 2 * Math.PI, true);
+                      mainContext.fillStyle = "rgba(204, 102, 153, " + ratio / 2 + ")";
+                      mainContext.fill();
+                }
+                
+                storeLastPosition(xPos);
          
                   // color in the background
                   mainContext.fillStyle = "#F8F8F8";
@@ -52,11 +80,15 @@
  
                   if (xPos > 750) {
                         speed = -speed;
+                        
                   }
                   
                   if (xPos < -400) {
                       speed = Math.abs(speed);
                   }
+                  
+                  
+                  
                   
                   requestAnimationFrame(drawCircle);
         }
