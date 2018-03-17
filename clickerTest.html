@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <img id="ball" src="http://www.i2clipart.com/cliparts/e/b/1/b/128045eb1b259252f6f4113c77b416b9e63e72.png">
+       
+        
+        <style>
+            #ball {
+                width: 0px;
+                height: 0px;
+            }
+        </style>
+        
+        <canvas onclick="myFunction(event)" id="myCanvas" width="600" height="376" style="background: url(http://www.clker.com/cliparts/m/i/F/O/t/T/soccer-field-hi.png); border:3px solid #000000;"></canvas>
+        <br>
+        <button class="btn btn-info btn-md" onclick="location.reload()">Restart</button>
+    </body>
+    <head>
+        
+        
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+       
+        <script>
+            var canvas = document.getElementById("myCanvas");
+            var ctx = canvas.getContext("2d");
+            var score=0;
+            var lives=3;
+            var randx=Math.random()*575;
+            var randy=Math.random()*356;
+            ctx.textAlign="center";
+            ctx.font="30px Arial";
+            ctx.fillText("Lives: "+lives, 60, 30);
+            ctx.fillText("Score: "+score, 430, 30);
+            ctx.drawImage(ball,randx, randy, 50, 50);
+
+            function myFunction(event){
+                var xpos=event.clientX;
+                var ypos=event.clientY;
+                if (xpos>=randx && xpos<=randx+50 && ypos>=randy && ypos<=randy+50){
+                    ctx.clearRect(0, 0, 600, 376);
+                    score++;
+                    ctx.fillText("Score: "+score, 430, 30);
+                    ctx.fillText("Lives: "+lives, 60, 30);
+                    randx=Math.random()*575;
+                    randy=Math.random()*356;
+                    ctx.drawImage(ball,randx, randy,50, 50);
+                } else {
+                    ctx.clearRect(0, 0, 600, 376);
+                    lives--;
+                    ctx.fillText("Score: "+score, 430, 30);
+                    ctx.fillText("Lives: "+lives, 60, 30);
+                    randx=Math.random()*575;
+                    randy=Math.random()*376;
+                    ctx.drawImage(ball,randx, randy,50, 50);
+                    if (lives==0){
+                        alert("Game Over");
+                        location.reload();
+                    }
+                }
+                if (score==20 && lives==3){
+                    alert("Perfect Game!");
+                    location.reload();
+                } else if (score==20){
+                    alert("You Won!");
+                    location.reload();
+                }
+            }
+        </script>
+    </head>
+</html>
